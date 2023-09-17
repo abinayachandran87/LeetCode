@@ -1,0 +1,57 @@
+# Online Python compiler (interpreter) to run Python online.
+# Write Python 3 code in this online editor and run it.
+'''import functools 
+
+def log(f):
+    def decorate(f):
+        @functools.wraps(f)
+        def wrap(*args, **kwargs):
+            print(f.__name__, args, kwargs)
+            return f(args, kwargs)
+        return wrap
+    return decorate
+
+@log(sum)    
+def sum(a,b):
+    c = a+b
+    return c
+    
+c = 0
+#fd = open("tmp.txt")
+#@log(fd)
+c = sum(4,5)
+print(c)
+'''
+# importing libraries
+
+ 
+# decorator to calculate duration
+# taken by any function.
+def log_function(a):
+    print(a)
+    def decorate(func):
+        def inner1(*args, **kwargs):
+            func(*args, **kwargs)
+            s = ''
+            print(type(args))
+            for arg in args:
+                print(type(arg))
+                if s != '':
+                    s += ','       
+                s += str(arg)
+            logStr = "LOG : "+ func.__name__ + '('+s+')'
+            print(logStr)
+        return inner1
+    return decorate
+ 
+ 
+ 
+# this can be added to any function present,
+# in this case to calculate a factorial
+@log_function(4)
+def display(num):
+ 
+    print("Number is :",num)
+ 
+# calling the function.
+display(10)

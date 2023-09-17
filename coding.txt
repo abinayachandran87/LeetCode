@@ -1,0 +1,46 @@
+#baseball
+def callFunc(ops):
+    tmpList = []
+    result = 0
+    for i in ops:
+        if i == 'C':
+            tmpList.pop()
+            print("Popped element")
+        elif i == 'D':
+            tmpList.append(tmpList[-1]*2)
+            print("Added doubled value")
+        elif i == '+':
+            tmpList.append(tmpList[-1] + tmpList[-2])
+            print("Addition")
+        else:
+            tmpList.append(int(i))
+    if len(tmpList)>=1:
+        result = sum(tmpList)
+        print("result is ",result)
+    return result
+
+#paranthesis    
+def checkValidBrack(str):
+    tmpList = []
+    openB = ['(', '{', '[']
+    closedB = [')', '}', ']']
+    for i in str:
+        if i in openB:
+            tmpList.append(i)
+        elif i in closedB:
+            last = tmpList.pop()
+            if (last == '[' and i == ']') or (last == '{' and i == '}') or (last == '(' and i == ')'):
+                continue
+            else:
+                break
+            
+    print(tmpList)
+    if len(tmpList) == 0:
+        return True
+    return False
+    
+inp = "abc{fhgk([dgfh]jkl}"
+#ops = inp.strip().split()
+#t = callFunc(ops)
+res = checkValidBrack(inp)
+print(res)

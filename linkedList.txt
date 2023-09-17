@@ -1,0 +1,141 @@
+'''
+
+                            Online Python Compiler.
+                Code, Compile, Run and Debug python program online.
+Write your code in this editor and press "Run" button to execute it.
+
+'''
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+        
+    def insertNode(self, node):
+        print("Inserting node", node.data)
+        if self.head == None:
+            self.head = node
+        else:
+            tnode = self.head
+            while tnode.next is not None:
+                tnode = tnode.next
+            tnode.next = node
+        return
+    
+    def printList(self):
+        print("Print list")
+        node = self.head
+        while node is not None:
+            print(node.data)
+            node = node.next
+        print ("end of list")
+            
+        
+    def printNodes(self):
+        node = self.head
+        while node is not None:
+            print(node.data)
+            node=node.next
+        print("End of print")
+    def deleteNode(self, data):
+        if self.head is None:
+            return
+        node = self.head
+        
+        print("Node to delete", data)
+        while node.data != data:
+            if (node.next is not None):
+                prevNode = node
+                node = node.next
+            else:
+                print("Node doesn't exist")
+                return
+        prevNode.next = node.next
+        node.next = None
+      #  free(node)
+        print ("Deleted")
+        
+    def checkForLoop(self):
+        sPtr = self.head
+        fPtr = self.head
+        
+        print("Checking for loops")
+        while (sPtr is not None) and (fPtr is not None) and (fPtr.next is not None):
+            sPtr = sPtr.next
+            fPtr = sPtr.next.next
+            if sPtr == fPtr:
+                return 1
+            
+        return 0
+      
+    
+    def findNthNode(self, n):
+        node = self.head
+        numNodes = 0
+        while node is not None:
+            node = node.next
+            numNodes = numNodes + 1
+        
+        nthNode = numNodes - n
+        if nthNode < 0:
+            print("There are fewer number of nodes")
+            return
+        node = self.head
+        while (node is not None) and (nthNode > 0):
+            node = node.next
+            nthNode = nthNode - 1
+        
+        if node is not None:
+            print("Nth node from end is", node.data)
+        
+        return
+    
+    def findMiddleElement(self):
+        node = self.head
+        nxtNode = self.head
+        while (node is not None) and (nxtNode is not None) and (nxtNode.next is not None):
+            node = node.next
+            nxtNode = nxtNode.next.next
+        
+        print("Middle element is ", node.data)
+        return node
+        
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+
+mylist = LinkedList()
+node1 = Node("Jan")
+mylist.insertNode(node1)
+
+node1= Node("Feb")
+mylist.insertNode(node1)
+node1= Node("Mar")
+mylist.insertNode(node1)
+node1= Node("Apr")
+mylist.insertNode(node1)
+node1= Node("May")
+mylist.insertNode(node1)
+node1= Node("Jun")
+mylist.insertNode(node1)
+node1= Node("Jul")
+mylist.insertNode(node1)
+node1= Node("Aug")
+mylist.insertNode(node1)
+#node1= Node("Sep")
+#mylist.insertNode(node1)4
+#node2.next = node1
+#mylist.printList()
+mylist.deleteNode("Aug")
+#mylist.printNodes()
+if mylist.checkForLoop():
+    print("Loop exists")
+else:
+    print("No loop")
+    mylist.printList
+
+mylist.findNthNode(3)
+mylist.findMiddleElement()
+
